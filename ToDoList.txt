@@ -1,0 +1,1 @@
+1.Add the -Wall for Compiler in Makefile.
