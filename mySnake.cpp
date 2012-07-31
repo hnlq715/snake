@@ -61,7 +61,7 @@ WINDOW* newlogw()
 
 void runlog(WINDOW *win, char *str)
 {
- static char logbuf[LOGBUF_NUM][LOGBUF_LEN] = {0};
+ static char logbuf[LOGBUF_NUM][LOGBUF_LEN];
  static int  index = 0;
 
  strcpy(logbuf[index], str);

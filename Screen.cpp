@@ -28,7 +28,6 @@ int Screen::refresh()
   FD_SET(0,&set);
   struct timeval timeout;
   timeout.tv_sec=0;
-  //TODO 2010-08-25 王华杰 未考虑snake 的speedlevel
   timeout.tv_usec=600000;
   snake.lifeProbing();
   if(!snake.getIsAlive())

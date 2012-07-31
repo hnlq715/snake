@@ -11,7 +11,6 @@ Snake::Snake()
   area=LivingArea();
    dir=DIR_LEFT;
  // cout<<"test"<<endl;
-  //2010-08-25 王华杰 使用双链表
    SnakeNode node=SnakeNode(7,50);
   // cout<<node.y<<endl;
    list.push_back(node);
