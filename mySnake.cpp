@@ -6,6 +6,7 @@
 #include <ncurses/ncurses.h>
 #include "Screen.h"
 #include "LivingArea.h"
+#include "trace.h"
 
 using namespace std;
 using namespace scr;
@@ -13,8 +14,8 @@ using namespace scr;
 WINDOW *logwin;
 WINDOW *gwin;
 
-#define INITRUNLOG()         (logwin = newlogw())
-#define RUNLOG(str)           (runlog(logwin, str))
+#define INITRUNLOG()     (logwin = newlogw())
+#define RUNLOG(str)      (runlog(logwin, str))
 #define DESTROYRUNLOG()  (delwin(logwin))
 
 
@@ -25,11 +26,12 @@ void initSreen(void);
 void exitSreen(void);
 
 const char log[] = "  Press 'q' or 'Q' to quit."
-                          "  Press 'w/s/a/d' or 'W/S/A/D' to move the snake."
-                          "  Info:";
+                   "  Press 'w/s/a/d' or 'W/S/A/D' to move the snake."
+                   "  Info:";
 
 int main(int argc,char* argv[])
 {
+  TRACE("Function entry, argc="<< argc);
   initSreen();
   INITRUNLOG();
   RUNLOG(log);

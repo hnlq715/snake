@@ -6,8 +6,9 @@
 #include <ncurses/ncurses.h>
 #include <iostream>
 #include "LivingArea.h"
-#include "Snake.h"
 #include "Screen.h"
+#include "Snake.h"
+
 using namespace std;
 using namespace scr;
 
@@ -21,7 +22,7 @@ Screen::Screen()
 Screen::Screen(WINDOW *pwin)
 {
   win = pwin;
-  while(this->refresh()>=0);
+  while(refresh()>=0);
 }
 int Screen::refresh()
 {

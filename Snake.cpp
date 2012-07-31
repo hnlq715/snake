@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <ncurses/ncurses.h>
 #include <iostream>
-#include "Snake.h"
 #include "LivingArea.h"
+#include "Snake.h"
 
 using namespace std;
 

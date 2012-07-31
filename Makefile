@@ -7,7 +7,7 @@ LDFLAGS=-L /usr/lib -lncurses
 all: $(PROGS)
 
 snake:
-	$(CC) $(CFLAGS) -o mySnake \
+	$(CC) $(CFLAGS) -o $(PROGS) \
 		   mySnake.cpp \
 		   Screen.cpp \
 		   LivingArea.cpp \
