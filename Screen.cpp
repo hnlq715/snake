@@ -20,7 +20,7 @@ Screen::Screen()
 }
 Screen::Screen(WINDOW *pwin)
 {
-  win=pwin;
+  win = pwin;
   while(this->refresh()>=0);
 }
 int Screen::refresh()
@@ -35,7 +35,7 @@ int Screen::refresh()
   snake.lifeProbing();
   if(!snake.getIsAlive())
     return -1;
-  if(select(1, &set, NULL, NULL, &timeout) < 0)
+  if(select(STDIN+1, &set, NULL, NULL, &timeout) < 0)
     return -1;
   if(FD_ISSET(0, &set))
   {
