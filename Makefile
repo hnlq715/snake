@@ -1,6 +1,6 @@
 CC=g++
 PROGS=snake
-CFLAGS=-Wall -O2
+CFLAGS=-Wall -O2 -g
 LDFLAGS=-L /usr/lib -lncurses
 
 

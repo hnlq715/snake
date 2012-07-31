@@ -4,9 +4,13 @@
 #include <ncurses/ncurses.h>
 #include "Block.h"
 
-#define GAMEWIN_YLEN 15
-#define GAMEWIN_XLEN 60
-#define SHAPE_FOOD '@'
+const int GAMEWIN_YLEN = 15;
+const int GAMEWIN_XLEN = 60;
+const int LOGWIN_YLEN = 7;
+const int LOGWIN_XLEN = GAMEWIN_XLEN;
+const int LOGBUF_NUM = LOGWIN_YLEN-2;
+const int LOGBUF_LEN = GAMEWIN_XLEN-2;
+
 class Snake;
 class LivingArea
 {

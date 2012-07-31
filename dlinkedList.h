@@ -3,7 +3,6 @@
 #include "stdio.h"
 #include <iostream>
 #include "node.h"
-using namespace std;
 
 template<class T>
 class List

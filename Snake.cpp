@@ -4,7 +4,10 @@
 #include <iostream>
 #include "Snake.h"
 #include "LivingArea.h"
+
 using namespace std;
+
+extern void exitSreen(void);
 
 Snake::Snake()
 {
@@ -181,9 +184,9 @@ void Snake::receivingNavi(int key)
          (dir == DIR_LEFT) ? : (dir = DIR_RIGHT);
          break;
     
-//     case 'q':
-//     case 'Q':
-//         return -1;
+     case 'q':
+     case 'Q':
+         exitSreen();
 
      default:
          break;

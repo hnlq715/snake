@@ -4,6 +4,10 @@
 #include <ncurses/ncurses.h>
 #include "LivingArea.h"
 #include "Snake.h"
+
+namespace scr{
+
+const int STDIN = 0;
 class Screen
 {
   public:
@@ -16,4 +20,6 @@ class Screen
          WINDOW *win;
           
 };
+
+}
 #endif

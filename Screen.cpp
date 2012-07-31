@@ -9,6 +9,9 @@
 #include "Snake.h"
 #include "Screen.h"
 using namespace std;
+using namespace scr;
+
+namespace scr{
 Screen::Screen()
 {
  // LivingArea area;
@@ -18,29 +21,29 @@ Screen::Screen()
 Screen::Screen(WINDOW *pwin)
 {
   win=pwin;
-  while(refresh()>=0);
+  while(this->refresh()>=0);
 }
 int Screen::refresh()
 {
-   int key=-1;
+  int key = -1;
   fd_set set;
   FD_ZERO(&set);
-  FD_SET(0,&set);
+  FD_SET(STDIN, &set);
   struct timeval timeout;
-  timeout.tv_sec=0;
-  timeout.tv_usec=600000;
+  timeout.tv_sec = 0;
+  timeout.tv_usec = 600000;
   snake.lifeProbing();
   if(!snake.getIsAlive())
     return -1;
-  if(select(1,&set,NULL,NULL,&timeout)<0)
-     return -1;
-  if(FD_ISSET(0,&set))
+  if(select(1, &set, NULL, NULL, &timeout) < 0)
+    return -1;
+  if(FD_ISSET(0, &set))
   {
-    while((key=getch())==-1);
-    snake.receivingNavi(key);
+    while((key = getch()) == -1);
+      snake.receivingNavi(key);
   }
   snake.move();
-  draw();  
+  this->draw();  
   return 0;
 }
 void Screen::draw()
@@ -48,3 +51,5 @@ void Screen::draw()
    //wrefresh(win); 
    snake.draw(win);
 } 
+
+}
