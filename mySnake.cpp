@@ -6,7 +6,6 @@
 #include <ncurses/ncurses.h>
 #include "Screen.h"
 #include "LivingArea.h"
-#include "trace.h"
 
 using namespace std;
 using namespace scr;
@@ -31,16 +30,14 @@ const char log[] = "  Press 'q' or 'Q' to quit."
 
 int main(int argc,char* argv[])
 {
-  TRACE("Function entry, argc="<< argc);
   initSreen();
   INITRUNLOG();
   RUNLOG(log);
-  gwin = newwin(15, 60, 1, 3);
-  box(gwin, 0, 0);
-  mvwprintw(gwin, 0, 2, "GAME");
+  
+  Screen screen;
+  screen.init();
+  screen.process();
 
-  Screen screen(gwin); 
-  // screen.draw(gwin);
   exitSreen();
 }
 

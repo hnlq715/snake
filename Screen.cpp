@@ -3,6 +3,7 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <ncurses/ncurses.h>
 #include <iostream>
 #include "LivingArea.h"
@@ -12,6 +13,8 @@
 using namespace std;
 using namespace scr;
 
+extern WINDOW* gwin;
+
 namespace scr{
 Screen::Screen()
 {
@@ -19,38 +22,58 @@ Screen::Screen()
  // snake=Snake();
   //while(refresh()>=0); 
 }
-Screen::Screen(WINDOW *pwin)
+
+void Screen::init()
 {
-  win = pwin;
-  while(refresh()>=0);
+	gwin = newwin(15, 60, 1, 3);
+	box(gwin, 0, 0);
+	mvwprintw(gwin, 0, 2, "GAME");
+    win = gwin;
 }
-int Screen::refresh()
+
+void Screen::process()
 {
-  int key = -1;
-  fd_set set;
-  FD_ZERO(&set);
-  FD_SET(STDIN, &set);
-  struct timeval timeout;
-  timeout.tv_sec = 0;
-  timeout.tv_usec = 600000;
-  snake.lifeProbing();
-  if(!snake.getIsAlive())
-    return -1;
-  if(select(STDIN+1, &set, NULL, NULL, &timeout) < 0)
-    return -1;
-  if(FD_ISSET(0, &set))
-  {
-    while((key = getch()) == -1);
-      snake.receivingNavi(key);
-  }
+	int key = -1;
+	fd_set set;
+	int val = fcntl( STDIN, F_GETFL, 0 );
+	fcntl( STDIN, F_SETFL, val|O_NONBLOCK );
+
+	struct timeval timeout;
+	timeout.tv_sec = 0;
+	timeout.tv_usec = 600000;
+
+
+    for(;;)
+    {
+    	FD_ZERO(&set);
+		FD_SET( STDIN, &set );
+
+		if(select(STDIN+1, &set, NULL, NULL, &timeout) < 0)
+		  return;
+
+		snake.lifeProbing();
+		if(!snake.getIsAlive())
+		  return;
+
+		if(FD_ISSET(STDIN, &set))
+		{
+		  while( ( key = getch() ) == -1 );
+            snake.receivingNavi( key );
+		}
+        refresh();
+    }
+    return;
+}
+
+void Screen::refresh()
+{
   snake.move();
-  this->draw();  
-  return 0;
+  draw();
+  return;
 }
 void Screen::draw()
 {
-   //wrefresh(win); 
-   snake.draw(win);
+   snake.draw( win );
 } 
 
 }

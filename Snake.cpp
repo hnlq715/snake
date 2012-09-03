@@ -99,11 +99,7 @@ void Snake::bodyReshape()
   list.pop_back(t);
   footprinty=t.y;
   footprintx=t.x;
- // cout<<"y:"<<t.y<<" x:"<<t.x<<endl;
-  //char tmp[256];
-  //sprintf(tmp,"y: %d x: %d",footprinty,footprintx);
-  //RUNLOG(tmp);
- // SnakeNode t;
+
   list.retrieve(0,t);
   switch (dir)
   {

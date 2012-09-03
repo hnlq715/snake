@@ -13,12 +13,14 @@ class Screen
   public:
          Screen();
          Screen(WINDOW *pwin);
-         int refresh();
+         void init();
+		 void process();
+         void refresh();
          void draw();
+
   private:
          Snake snake;
          WINDOW *win;
-          
 };
 
 }
