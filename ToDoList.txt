@@ -1,3 +1,0 @@
-1.Add the -Wall for Compiler in Makefile.(done)
-2.Add the function to create trace into files.
-3.Improve the log in log window.
